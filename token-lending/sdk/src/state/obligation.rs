@@ -196,7 +196,7 @@ impl Obligation {
         deposit_reserve: Pubkey,
     ) -> Result<(&ObligationCollateral, usize), ProgramError> {
         if self.deposits.is_empty() {
-            msg!("Obligation has no deposits");
+            //msg!("Obligation has no deposits");
             return Err(LendingError::ObligationDepositsEmpty.into());
         }
         let collateral_index = self
@@ -237,7 +237,7 @@ impl Obligation {
         borrow_reserve: Pubkey,
     ) -> Result<(&ObligationLiquidity, usize), ProgramError> {
         if self.borrows.is_empty() {
-            msg!("Obligation has no borrows");
+            //msg!("Obligation has no borrows");
             return Err(LendingError::ObligationBorrowsEmpty.into());
         }
         let liquidity_index = self
@@ -390,7 +390,7 @@ impl ObligationLiquidity {
     pub fn accrue_interest(&mut self, cumulative_borrow_rate_wads: Decimal) -> ProgramResult {
         match cumulative_borrow_rate_wads.cmp(&self.cumulative_borrow_rate_wads) {
             Ordering::Less => {
-                msg!("Interest rate cannot be negative");
+                //msg!("Interest rate cannot be negative");
                 return Err(LendingError::NegativeInterestRate.into());
             }
             Ordering::Equal => {}
